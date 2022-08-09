@@ -2,7 +2,69 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
+import { useGetPlayers } from '../components/useRequest';
+
+import * as React from 'react';
+import { useState } from 'react';
+
+import TeamGrid from '../components/MainBox/TeamGrid';
+import NavBar from '../components/NavBar/NavBar';
+import PlayerSelecter from '../components/PlayerSelecter/PlayerSelecter';
+import { ThemeProvider } from '@mui/material/styles';
+import { Box, Grid } from '@mui/material';
+import theme from '../Theme';
+
+const team = null
+
 export default function Home() {
+
+  const { data: allPlayers, error } = useGetPlayers();
+
+  return (
+
+    <ThemeProvider theme={theme}>
+      <NavBar/>
+      <Grid container justifyContent='center'>
+        <Box  
+          sx={{
+            bgcolor: 'background',
+            boxShadow: 1,
+            borderRadius: 2,
+            p: 2,
+            minWidth: 300,
+            maxWidth: 1000,
+            marginTop: 3,
+            marginLeft: 2,
+            marginRight: 2,
+            width: 'auto' }}>
+          <TeamGrid team={team}/>
+        </Box>
+        <PlayerSelecter allPlayers={allPlayers} />
+      </Grid>
+    </ThemeProvider>   
+  );
+}
+
+/*
+function Player({ player }) {
+  const { web_name, now_cost, total_points } = player;
+  return (
+    <>
+      <div className="p-4 mb-4 text-sm text-blue-700 bg-blue-100 rounded-lg">
+        <p className="font-medium">
+          {web_name}. {total_points}
+        </p>
+        <p>{now_cost}</p>
+      </div>
+    </>
+  );
+}
+
+function Home() {
+
+  const { data: players, error } = useGetPlayers();
+  if (!players) return <h1>Loading...</h1>;
+
   return (
     <div className={styles.container}>
       <Head>
@@ -12,58 +74,14 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
+        
+        {players.map((player) => (
+          <Player player={player} key={player.id} />
+        ))}
+        
       </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
   )
 }
+*/
+
