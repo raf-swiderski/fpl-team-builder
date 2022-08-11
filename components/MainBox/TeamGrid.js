@@ -2,33 +2,11 @@ import PlayerCard from './PlayerCard';
 import * as React from 'react';
 import { Grid } from '@mui/material'
 
-import { addOnePlayer } from "../../redux/store";
-
-
 function TeamGrid(props) {
-
-  // const [teamBlueprint, setTeamBlueprint] = React.useState({ // which cards are filled:
-  //   0: false, 1: false, 2: false, 3: false, 4: false, 5: false, 6: false, 7: false, 8: false, 9: false, 10: false, 11: false, 12: false, 13: false, 14: false
-  // });
-
-  // const updateTeamBlueprint = (index) => {
-  //   teamBlueprint[index] = !teamBlueprint[index]
-  //   setTeamBlueprint(teamBlueprint)
-  // }
-
-
 
   return (
     <React.Fragment>
-        <Grid container 
-        spacing={1} 
-        justifyContent='center' 
-        direction='row'
-        alignItems='center'
-        marginTop={3}
-        marginBottom={5}
-        >
-
+        <Grid container spacing={1} justifyContent='center' direction='row' alignItems='center' marginTop={3} marginBottom={5}>
         <Grid item xs={12} container justifyContent='center' >
           <Grid item >
             <PlayerCard index={0}></PlayerCard></Grid>{/* Goalkeepers */}

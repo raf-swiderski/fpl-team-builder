@@ -3,13 +3,14 @@ import { List, Paper } from '@mui/material';
 import ListItemButton from '@mui/material/ListItemButton';
 import Player from './Player';
 
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { addOnePlayer } from '../../../redux/features/teamGridSlice'
 
 
 export default function ListOfPlayers(props) {
   
   const dispatch = useDispatch()
+  
   return (
 
     <Paper style={{

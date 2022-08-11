@@ -6,77 +6,92 @@ export const teamGridReducer = createSlice({
     0: {
         filled: false,
         player: {}, 
-        position: 1
+        position: 1,
+        prevPlayer: {}
     }, 
     1: {
         filled: false,
         player: {},
-        position: 1
+        position: 1,
+        prevPlayer: {}
     }, 
     2: {
         filled: false,
         player: {},
-        position: 2
+        position: 2,
+        prevPlayer: {}
     }, 
     3: {
         filled: false,
         player: {},
-        position: 2
+        position: 2,
+        prevPlayer: {}
     }, 
     4: {
         filled: false,
         player: {},
-        position: 2
+        position: 2,
+        prevPlayer: {}
     }, 
     5: {
         filled: false,
         player: {},
-        position: 2
+        position: 2,
+        prevPlayer: {}
     }, 
     6: {
         filled: false,
         player: {},
-        position: 2
+        position: 2,
+        prevPlayer: {}
     }, 
     7: {
         filled: false,
         player: {},
-        position: 3
+        position: 3,
+        prevPlayer: {}
     }, 
     8: {
         filled: false,
         player: {},
-        position: 3
+        position: 3,
+        prevPlayer: {}
     }, 
     9: {
         filled: false,
         player: {},
-        position: 3
+        position: 3,
+        prevPlayer: {}
     }, 
     10: {
         filled: false,
         player: {},
-        position: 3
+        position: 3,
+        prevPlayer: {}
     }, 
     11: {
         filled: false,
         player: {},
-        position: 3
+        position: 3,
+        prevPlayer: {}
     }, 
     12: {
         filled: false,
         player: {},
-        position: 4
+        position: 4,
+        prevPlayer: {}
     }, 
     13: {
         filled: false,
         player: {},
-        position: 4
+        position: 4,
+        prevPlayer: {}
     }, 
     14: {
         filled: false,
         player: {},
-        position: 4
+        position: 4,
+        prevPlayer: {}
     }
   },
   reducers: {
@@ -146,21 +161,24 @@ export const teamGridReducer = createSlice({
                 state[14].filled = true
             } 
       }
-
       
     },
     removeOnePlayer: (state, action) => {
 
       let index = action.payload
-      console.log(index)
 
       state[index].filled = false
+      state[index].prevPlayer = state[index].player
       state[index].player = {}
 
+    },
+    revertCardToPrevPlayer: (state, action) => {
+      let index = action.payload
+      state[index].player = state[index].prevPlayer
     }
   },
 })
 
-export const { addOnePlayer, removeOnePlayer } = teamGridReducer.actions;
+export const { addOnePlayer, removeOnePlayer, revertCardToPrevPlayer } = teamGridReducer.actions;
 export const getTeamStore = (initialState) => initialState.teamGrid
 export default teamGridReducer.reducer;

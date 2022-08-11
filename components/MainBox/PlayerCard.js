@@ -31,7 +31,7 @@ function PlayerCard(props) {
   }, [])
 
   if (!teamStore[props.index].filled) {
-    return <EmptyPlayerCard />
+    return <EmptyPlayerCard index={props.index} />
   }
 
   const playerInfo = teamStore[props.index].player
