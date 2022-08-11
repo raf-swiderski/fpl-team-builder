@@ -89,16 +89,16 @@ export const teamGridReducer = createSlice({
 
       switch (action.payload.element_type) {
 
-        case 1: // 1 GKP 
+        case 1: // GKP 
             if (!state[0].filled) {
                 state[0].player = action.payload
                 state[0].filled = true
-            } else {
+            } else if (!state[1].filled) {
                 state[1].player = action.payload
                 state[1].filled = true
             }
             break;
-        case 2: // 2 DEF
+        case 2: // DEF
             if (!state[2].filled) {
                 state[2].player = action.payload
                 state[2].filled = true
@@ -111,12 +111,12 @@ export const teamGridReducer = createSlice({
             } else if ((!state[5].filled)) {
                 state[5].player = action.payload
                 state[5].filled = true
-            } else {
+            } else if (!state[6].filled) {
                 state[6].player = action.payload
                 state[6].filled = true
             }
             break;
-        case 3: // 3 MID
+        case 3: // MID
             if (!state[7].filled) {
                 state[7].player = action.payload
                 state[7].filled = true
@@ -129,12 +129,12 @@ export const teamGridReducer = createSlice({
             } else if ((!state[10].filled)) {
                 state[10].player = action.payload
                 state[10].filled = true
-            } else {
+            } else if ((!state[11].filled)) {
                 state[11].player = action.payload
                 state[11].filled = true
             }
             break;
-        case 4: // 4 FWD
+        case 4: // FWD
             if (!state[12].filled) {
                 state[12].player = action.payload
                 state[12].filled = true
@@ -149,16 +149,18 @@ export const teamGridReducer = createSlice({
 
       
     },
-    removeOnePlayer: (state) => {
+    removeOnePlayer: (state, action) => {
 
-      state[0] = {
-        filled: false,
-        player: {}
-      }
+      let index = action.payload
+      console.log(index)
+
+      state[index].filled = false
+      state[index].player = {}
+
     }
   },
 })
 
-export const { addOnePlayer } = teamGridReducer.actions;
+export const { addOnePlayer, removeOnePlayer } = teamGridReducer.actions;
 export const getTeamStore = (initialState) => initialState.teamGrid
 export default teamGridReducer.reducer;

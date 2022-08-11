@@ -8,15 +8,16 @@ import EmptyPlayerCard from './EmptyPlayerCard'
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
-import { useSelector } from "react-redux";
-import { getTeamStore} from '../../redux/features/teamGridSlice'
+import { useSelector, useDispatch } from "react-redux";
+import { getTeamStore } from '../../redux/features/teamGridSlice'
+import { removeOnePlayer } from '../../redux/features/teamGridSlice'
 
 function PlayerCard(props) {
-
+  
+  const dispatch = useDispatch()
+  const teamStore = useSelector(getTeamStore)
   const [player, setPlayer] = useState(null)
   const isMounted = useRef(false);
-
-  const teamStore = useSelector(getTeamStore)
 
   useEffect(() => {
     if (isMounted.current) {
@@ -51,7 +52,7 @@ function PlayerCard(props) {
 
           </Typography>
           <IconButton 
-                    // onClick={removePlayerCard}
+                    onClick={() => dispatch(removeOnePlayer(props.index))}
                     sx={{
                     position: 'absolute',
                     alignSelf: 'flex-end',
