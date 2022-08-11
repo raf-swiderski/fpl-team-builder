@@ -1,12 +1,6 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-
-import { useGetPlayers } from '../components/useRequest';
-
 import * as React from 'react';
-import { useState } from 'react';
-
+import styles from '../styles/Home.module.css'
+import { useGetPlayers } from '../components/useRequest';
 import TeamGrid from '../components/MainBox/TeamGrid';
 import NavBar from '../components/NavBar/NavBar';
 import PlayerSelecter from '../components/PlayerSelecter/PlayerSelecter';
@@ -14,34 +8,28 @@ import { ThemeProvider } from '@mui/material/styles';
 import { Box, Grid } from '@mui/material';
 import theme from '../Theme';
 
+import { store } from '../redux/store'
+import { Provider } from 'react-redux'
+
 const team = null
 
 export default function Home() {
 
-  const { data: allPlayers, error } = useGetPlayers();
+  const { data: allPlayers, error } = useGetPlayers(); // fetching all players from api 
 
   return (
-
-    <ThemeProvider theme={theme}>
-      <NavBar/>
-      <Grid container justifyContent='center'>
-        <Box  
-          sx={{
-            bgcolor: 'background',
-            boxShadow: 1,
-            borderRadius: 2,
-            p: 2,
-            minWidth: 300,
-            maxWidth: 1000,
-            marginTop: 3,
-            marginLeft: 2,
-            marginRight: 2,
-            width: 'auto' }}>
-          <TeamGrid team={team}/>
-        </Box>
-        <PlayerSelecter allPlayers={allPlayers} />
-      </Grid>
-    </ThemeProvider>   
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <NavBar/>
+        <Grid container justifyContent='center'>
+          <Box  
+            sx={{ bgcolor: 'background', boxShadow: 1, borderRadius: 2, p: 2, minWidth: 300, maxWidth: 1000,  marginTop: 3, marginLeft: 2, marginRight: 2, width: 'auto' }}>
+            <TeamGrid team={team}/>
+          </Box>
+          <PlayerSelecter allPlayers={allPlayers} />
+        </Grid>
+      </ThemeProvider>
+    </Provider>
   );
 }
 

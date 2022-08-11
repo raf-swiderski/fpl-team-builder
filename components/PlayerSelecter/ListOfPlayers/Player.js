@@ -13,7 +13,7 @@ export default function Player(props) {
     return (
         <ListItem sx={{ maxWidth: 287, maxHeight: 40}}>
             <ListItemAvatar>
-                <Avatar src={player.photo} />
+                <Avatar />
             </ListItemAvatar>
             <ListItemText
                 primary={

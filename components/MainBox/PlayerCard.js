@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent, Typography } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles';
 import theme from '../../Theme';
@@ -7,23 +8,32 @@ import EmptyPlayerCard from './EmptyPlayerCard'
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
+import { useSelector } from "react-redux";
+import { getTeamStore} from '../../redux/features/teamGridSlice'
+
 function PlayerCard(props) {
-  const player = props.player;
-  const [ empty, setEmpty ] = React.useState(true)
 
-  const removePlayerCard = (e) => {
-    setEmpty(true)
-    props.updateTeamBlueprint(props.index)
+  const [player, setPlayer] = useState(null)
+  const isMounted = useRef(false);
+
+  const teamStore = useSelector(getTeamStore)
+
+  useEffect(() => {
+    if (isMounted.current) {
+      setPlayer(teamStore[props.index])
+    }
+  }, [teamStore])
+
+  useEffect(() => {
+    isMounted.current = true;
+    setTimeout(() => {}, 100)
+  }, [])
+
+  if (!teamStore[props.index].filled) {
+    return <EmptyPlayerCard />
   }
 
-  const resetPlayerCard = () => {
-    setEmpty(false)
-    props.updateTeamBlueprint(props.index)
-  }
-
-  if (empty === true) {
-    return <EmptyPlayerCard resetPlayerCard={resetPlayerCard} />
-  }
+  const playerInfo = teamStore[props.index].player
   
   return (
     <ThemeProvider theme={theme}>
@@ -37,11 +47,11 @@ function PlayerCard(props) {
         <CardContent>
           <Typography color="text.secondary" >
 
-              {player.team_name}
+              {playerInfo.team_name}
 
           </Typography>
           <IconButton 
-                    onClick={removePlayerCard}
+                    // onClick={removePlayerCard}
                     sx={{
                     position: 'absolute',
                     alignSelf: 'flex-end',
@@ -52,16 +62,16 @@ function PlayerCard(props) {
           </IconButton> 
           <Typography component="div">
 
-            {player.first_name} {player.web_name}
+            {playerInfo.first_name} {playerInfo.web_name}
 
           </Typography>
           <Typography color="text.secondary">
 
-            £{player.now_cost}m
+            £{playerInfo.now_cost}m
           </Typography>
           <Typography >
 
-            PPG: {player.points_per_game}
+            PPG: {playerInfo.points_per_game}
 
           </Typography>
 
