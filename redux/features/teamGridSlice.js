@@ -120,7 +120,7 @@ export const teamGridReducer = createSlice({
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
 
-      
+      // if player exists in teamgrid, dont add him. 
 
       switch (playerToBeAdded.element_type) {
 

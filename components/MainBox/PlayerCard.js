@@ -18,7 +18,6 @@ function PlayerCard(props) {
   const teamStore = useSelector(getTeamStore)
   const [player, setPlayer] = useState(null)
   const isMounted = useRef(false);
-
   const [hasBeenPreviouslyFilled, setHasBeenPreviouslyFilled] = useState(false)
 
   useEffect(() => {
