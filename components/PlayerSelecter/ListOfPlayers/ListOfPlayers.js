@@ -14,8 +14,8 @@ export default function ListOfPlayers(props) {
     }}>
       <List>
           {
-              props.allPlayers.map((player, index) => (   
-                    <Player player={player} index={index} />
+              props.allPlayers.map((player, i) => (   
+                    <Player player={player} key={i} index={i}/>
               ))
           }
       </List>

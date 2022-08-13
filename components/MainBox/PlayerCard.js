@@ -19,9 +19,14 @@ function PlayerCard(props) {
   const [player, setPlayer] = useState(null)
   const isMounted = useRef(false);
 
+  const [hasBeenPreviouslyFilled, setHasBeenPreviouslyFilled] = useState(false)
+
   useEffect(() => {
     if (isMounted.current) {
       setPlayer(teamStore[props.index])
+    }
+    if (teamStore[props.index].prevFilled) {
+      setHasBeenPreviouslyFilled(true)
     }
   }, [teamStore])
 
@@ -31,7 +36,7 @@ function PlayerCard(props) {
   }, [])
 
   if (!teamStore[props.index].filled) {
-    return <EmptyPlayerCard index={props.index} />
+    return <EmptyPlayerCard index={props.index} hasBeenPreviouslyFilled={hasBeenPreviouslyFilled} />
   }
 
   const playerInfo = teamStore[props.index].player

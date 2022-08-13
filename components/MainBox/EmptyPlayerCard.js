@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import IconButton from '@mui/material/IconButton';
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { revertCardToPrevPlayer } from '../../redux/features/teamGridSlice'
 
 export default function EmptyPlayerCard(props) {
@@ -21,16 +21,18 @@ export default function EmptyPlayerCard(props) {
         minHeight: 110
       }}>
         <CardContent>
-          <IconButton 
-                onClick={() => dispatch(revertCardToPrevPlayer(props.index))}
-                    sx={{
-                    position: 'absolute',
-                    alignSelf: 'flex-end',
-                    marginTop: -2.49,
-                    marginLeft: 16.4 
-                }}>
-              <RefreshIcon/>
-           </IconButton> 
+          {props.hasBeenPreviouslyFilled && 
+            <IconButton 
+                  onClick={() => dispatch(revertCardToPrevPlayer(props.index))}
+                      sx={{
+                      position: 'absolute',
+                      alignSelf: 'flex-end',
+                      marginTop: -2.49,
+                      marginLeft: 16.4 
+                  }}>
+                <RefreshIcon/>
+            </IconButton> 
+          }
           <Typography color="text.secondary" >
 
               Select Player

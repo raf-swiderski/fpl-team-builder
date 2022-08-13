@@ -9,9 +9,9 @@ import { Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux'
 import { addOnePlayer, getTeamStore } from '../../../redux/features/teamGridSlice'
 
-function checkIfPlayerIsInTeadGridStore(teamStore, player) {
+const checkIfPlayerIsInTeamGridStore = (teamStore, player) => {
     for (let i = 0; i < 14; i++) {
-        let storedPlayer = teamStore[i]
+        let storedPlayer = teamStore[i].player
         if (storedPlayer === player) {
             return true
         }
@@ -19,32 +19,26 @@ function checkIfPlayerIsInTeadGridStore(teamStore, player) {
     return false
 }
 
+
+
 export default function Player(props) {
 
     const player = props.player
     const dispatch = useDispatch()
-    const teamStore = useSelector(getTeamStore)
-    const [disabled, setDisabled] = React.useState(false)
+    // const teamStore = useSelector(getTeamStore)
 
-    // if (player) is not in team store, re able the button
-
-    // React.useEffect(() => {
-    //     if (!checkIfPlayerIsInTeadGridStore(teamStore, player)) {
-    //         setDisabled(false)
-    //     }
-
-    // }, [teamStore]);
+    // const isPlayerInStore = checkIfPlayerIsInTeamGridStore(teamStore, player)
 
     const handleClick = () => {
-        dispatch(addOnePlayer(player))
-        setDisabled(true)
+        // if (!isPlayerInStore) {
+            dispatch(addOnePlayer(player))
+        // }
     }
 
     return (
-        <ListItemButton key={props.index} 
+        <ListItemButton key={props.index}
             sx={{backgroundColor: "secondary.main"}}
-            onClick={handleClick}
-            disabled={disabled}>
+            onClick={handleClick}>
             <ListItem sx={{ maxWidth: 287, maxHeight: 40}}>
                 <ListItemAvatar>
                     <Avatar />
