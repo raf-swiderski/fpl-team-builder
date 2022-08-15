@@ -17,8 +17,9 @@ export default function EmptyPlayerCard(props) {
       <Card variant="outlined"       
       sx={{
         bgcolor: 'secondary.main',
-        width: 180, 
-        minHeight: 110
+        width: 170, 
+        minHeight: 150,
+        margin: 0
       }}>
         <CardContent>
           {props.hasBeenPreviouslyFilled && 
@@ -35,7 +36,7 @@ export default function EmptyPlayerCard(props) {
           }
           <Typography color="text.secondary" >
 
-              Select Player
+              <mark>Select Player</mark>
 
           </Typography>
         </CardContent>

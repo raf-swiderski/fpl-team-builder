@@ -4,7 +4,7 @@ import { Card, CardContent, Typography, CardMedia } from '@mui/material'
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { ThemeProvider } from '@mui/material/styles';
-import { playerPhoto, playerName, playerPrice } from './playerCard.module.css'
+import { playerPhoto, playerName, playerPrice, markPlayerName, markPlayerPrice } from './playerCard.module.css'
 import theme from '../../Theme';
 import EmptyPlayerCard from './EmptyPlayerCard'
 import { useSelector, useDispatch } from "react-redux";
@@ -36,20 +36,22 @@ function PlayerCard(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Card variant="outlined" sx={{ width: 180, minHeight: 110, margin: 0 }}>
+      <Card style={{ border: "none", boxShadow: "none" }} sx={{ width: 180, minHeight: 110, margin: 0 }}>
         <CardContent >
           <CardMedia className={playerPhoto} component="img" alt='playerPhoto' src={picUrl} />
           <IconButton 
                     onClick={() => dispatch(removeOnePlayer(props.index))}
                     sx={{ position: 'absolute',
                     alignSelf: 'flex-end',
-                    marginTop: -4.7,
-                    marginLeft: 16.4 }}>
+                    marginTop: -12.7,
+                    marginLeft: 14.4 }}>
             <CloseIcon />
           </IconButton> 
-          <Typography align="center" className={playerName}>  {playerInfo.web_name} </Typography>
-          <Typography align="center" className={playerPrice}color="text.secondary">
-            £{playerInfo.now_cost}m
+          <Typography align="center" className={playerName}> 
+            <mark className={markPlayerName}> {playerInfo.web_name}</mark>
+          </Typography>
+          <Typography align="center" className={playerPrice}>
+            <mark className={markPlayerPrice}>£{playerInfo.now_cost}m</mark> 
           </Typography>
         </CardContent>
       </Card>
