@@ -43,43 +43,25 @@ function PlayerCard(props) {
   return (
     <ThemeProvider theme={theme}>
 
-      <Card variant="outlined"       
-      sx={{
-        bgcolor: 'secondary.main',
-        width: 180,
-        minHeight: 110
-      }}>
+      <Card variant="outlined" sx={{ width: 180, minHeight: 110 }}>
         <CardContent>
           <Typography color="text.secondary" >
-
               {playerInfo.team_name}
-
           </Typography>
           <IconButton 
                     onClick={() => dispatch(removeOnePlayer(props.index))}
-                    sx={{
-                    position: 'absolute',
+                    sx={{ position: 'absolute',
                     alignSelf: 'flex-end',
                     marginTop: -4.7,
-                    marginLeft: 16.4 
-                }}>
+                    marginLeft: 16.4 }}>
             <CloseIcon />
           </IconButton> 
           <Typography component="div">
-
-            {playerInfo.first_name} {playerInfo.web_name}
-
+            {playerInfo.web_name}
           </Typography>
           <Typography color="text.secondary">
-
             £{playerInfo.now_cost}m
           </Typography>
-          <Typography >
-
-            PPG: {playerInfo.points_per_game}
-
-          </Typography>
-
         </CardContent>
       </Card>
     </ThemeProvider>    

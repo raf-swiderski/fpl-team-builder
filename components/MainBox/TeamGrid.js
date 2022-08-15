@@ -1,76 +1,63 @@
-import PlayerCard from './PlayerCard';
 import * as React from 'react';
-import { Grid } from '@mui/material'
+import { Grid, Box } from '@mui/material'
+import PlayerCard from './PlayerCard';
 
-function TeamGrid(props) {
 
+import Image from 'next/image'
+import { teamGrid, pitchImage } from './teamGrid.module.css'
+
+
+
+export default function TeamGrid() {
   return (
     <React.Fragment>
-        <Grid container spacing={1} justifyContent='center' direction='row' alignItems='center' marginTop={3} marginBottom={5}>
-        <Grid item xs={12} container justifyContent='center' >
-          <Grid item >
-            <PlayerCard index={0}></PlayerCard></Grid>{/* Goalkeepers */}
-          <Grid item >
-            <PlayerCard index={1}></PlayerCard></Grid>{/* Goalkeepers */}
-        </Grid>
+    
+
+      <Box sx={{ boxShadow: 1, borderRadius: 2, minWidth: 300, maxWidth: 1000,  marginTop: 3, marginLeft: 2, marginRight: 2, width: 'auto' }}>
+        <div style={{width: '100%', height: '95%', position: 'relative'}}>
+          <Image
+              alt="pitch"
+              src="/pitch.png"
+              layout="fill"
+              objectFit="contain"
+              quality={100} />
+
+        <Grid className={teamGrid}
+
+        
+        container spacing={1} justifyContent='center' direction='row' alignItems='center' marginTop={3} marginBottom={5} >
 
 
-        <Grid item xs={12} container justifyContent='center'>
-          <Grid item/>
-          <Grid item>
-            <PlayerCard index={2} ></PlayerCard> {/* Defenders */}
-          </Grid>
-          <Grid item>
-            <PlayerCard index={3} ></PlayerCard> {/* Defenders */}
-          </Grid>
-          <Grid item>
-            <PlayerCard index={4} ></PlayerCard> {/* Defenders */}
-          </Grid>
-          <Grid item>
-            <PlayerCard index={5} ></PlayerCard> {/* Defenders */}
-          </Grid>
-          <Grid item>
-            <PlayerCard index={6} ></PlayerCard> {/* Defenders */}
-          </Grid>
-          <Grid item/>
-        </Grid>
-
-        <Grid item xs={12} container justifyContent='center'>
-
-          <Grid item>
-            <PlayerCard index={7} ></PlayerCard> {/* Midfielders */}
+          <Grid  item xs={12} container justifyContent='center' >
+            <Grid item ><PlayerCard index={0}></PlayerCard></Grid>{/* Goalkeeper */}
+            <Grid item ><PlayerCard index={1}></PlayerCard></Grid>{/* Goalkeeper */}
           </Grid>
 
-          <Grid item>
-            <PlayerCard index={8} ></PlayerCard> {/* Midfielders */}
+          <Grid item xs={12} container justifyContent='center'>
+            <Grid item><PlayerCard index={2} ></PlayerCard></Grid> {/* Defender */}
+            <Grid item><PlayerCard index={3} ></PlayerCard></Grid> {/* Defender */}
+            <Grid item><PlayerCard index={4} ></PlayerCard></Grid> {/* Defender */}
+            <Grid item><PlayerCard index={5} ></PlayerCard></Grid> {/* Defender */}
+            <Grid item><PlayerCard index={6} ></PlayerCard></Grid> {/* Defender */}
           </Grid>
 
-          <Grid item>
-            <PlayerCard index={9} ></PlayerCard> {/* Midfielders */}
+          <Grid item xs={12} container justifyContent='center'>
+            <Grid item><PlayerCard index={7} ></PlayerCard></Grid> {/* Midfielder */}
+            <Grid item><PlayerCard index={8} ></PlayerCard></Grid> {/* Midfielder */}
+            <Grid item><PlayerCard index={9} ></PlayerCard></Grid> {/* Midfielder */}
+            <Grid item><PlayerCard index={10} ></PlayerCard></Grid> {/* Midfielder */}
+            <Grid item><PlayerCard index={11} ></PlayerCard></Grid> {/* Midfielder */}
           </Grid>
 
-          <Grid item>
-            <PlayerCard index={10} ></PlayerCard> {/* Midfielders */}
-          </Grid>
-
-          <Grid item>
-            <PlayerCard index={11} ></PlayerCard> {/* Midfielders */}
+          <Grid item xs={12} container justifyContent='center'>
+            <Grid item><PlayerCard index={12} ></PlayerCard></Grid> {/* Forward */}
+            <Grid item><PlayerCard index={13} ></PlayerCard></Grid> {/* Forward */}
+            <Grid item><PlayerCard index={14} ></PlayerCard></Grid> {/* Forward */}
           </Grid>
 
         </Grid>
-
-        <Grid item xs={12} container justifyContent='center'>
-          <PlayerCard index={12} ></PlayerCard> {/* Forwards */}
-          <PlayerCard index={13} ></PlayerCard> {/* Forwards */}
-          <PlayerCard index={14} ></PlayerCard> {/* Forwards */}
-        </Grid>
-
-      </Grid>
-
+        </div>
+      </Box>
     </React.Fragment>
   );
-  
 }
-
-
-export default TeamGrid;
