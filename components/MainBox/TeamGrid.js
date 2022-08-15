@@ -4,7 +4,7 @@ import PlayerCard from './PlayerCard';
 
 
 import Image from 'next/image'
-import { teamGrid, pitchImage } from './teamGrid.module.css'
+import { teamGrid } from './teamGrid.module.css'
 
 
 
