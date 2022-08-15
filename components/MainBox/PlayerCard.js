@@ -4,13 +4,12 @@ import { Card, CardContent, Typography, CardMedia } from '@mui/material'
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { ThemeProvider } from '@mui/material/styles';
-import { playerPhoto } from './playerCard.module.css'
+import { playerPhoto, playerName, playerPrice } from './playerCard.module.css'
 import theme from '../../Theme';
 import EmptyPlayerCard from './EmptyPlayerCard'
 import { useSelector, useDispatch } from "react-redux";
 import { getTeamStore } from '../../redux/features/teamGridSlice'
 import { removeOnePlayer } from '../../redux/features/teamGridSlice'
-import Image from 'next/image'
 
 function PlayerCard(props) {
   const dispatch = useDispatch()
@@ -29,9 +28,7 @@ function PlayerCard(props) {
     setTimeout(() => {}, 100)
   }, [])
 
-  if (!teamStore[props.index].filled) {
-    return <EmptyPlayerCard index={props.index} hasBeenPreviouslyFilled={hasBeenPreviouslyFilled} />
-  }
+  if (!teamStore[props.index].filled) { return <EmptyPlayerCard index={props.index} hasBeenPreviouslyFilled={hasBeenPreviouslyFilled} /> }
 
   const playerInfo = teamStore[props.index].player
   const playerPhotoId = playerInfo.photo.slice(0, -4); 
@@ -39,11 +36,8 @@ function PlayerCard(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Card variant="outlined" sx={{ bgcolor: 'background',width: 180, minHeight: 110 }}>
-        <CardContent>
-          <Typography color="text.secondary" >
-              {playerInfo.team_name}
-          </Typography>
+      <Card variant="outlined" sx={{ width: 180, minHeight: 110, margin: 0 }}>
+        <CardContent >
           <CardMedia className={playerPhoto} component="img" alt='playerPhoto' src={picUrl} />
           <IconButton 
                     onClick={() => dispatch(removeOnePlayer(props.index))}
@@ -53,10 +47,8 @@ function PlayerCard(props) {
                     marginLeft: 16.4 }}>
             <CloseIcon />
           </IconButton> 
-          <Typography component="div">
-            {playerInfo.web_name}
-          </Typography>
-          <Typography color="text.secondary">
+          <Typography align="center" className={playerName}>  {playerInfo.web_name} </Typography>
+          <Typography align="center" className={playerPrice}color="text.secondary">
             £{playerInfo.now_cost}m
           </Typography>
         </CardContent>

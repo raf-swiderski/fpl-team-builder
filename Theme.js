@@ -39,6 +39,16 @@ const theme = createTheme({
           backgroundColor: lighterColor
         }
       }
+    },
+    MuiCardContent: {
+      styleOverrides: {
+        root: {
+          padding: 5,
+          "&:last-child": {
+            paddingBottom: 1,
+          } 
+        }
+      }
     }
   }
 })

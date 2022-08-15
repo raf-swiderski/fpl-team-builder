@@ -1,12 +1,8 @@
 import * as React from 'react';
 import { Grid, Box } from '@mui/material'
 import PlayerCard from './PlayerCard';
-
-
 import Image from 'next/image'
 import { teamGrid } from './teamGrid.module.css'
-
-
 
 export default function TeamGrid() {
   return (

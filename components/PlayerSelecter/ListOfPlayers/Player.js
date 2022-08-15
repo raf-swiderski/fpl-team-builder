@@ -6,34 +6,17 @@ import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemButton from '@mui/material/ListItemButton';
 import Avatar from '@mui/material/Avatar';
 import { Typography } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux'
-import { addOnePlayer, getTeamStore } from '../../../redux/features/teamGridSlice'
-
-const checkIfPlayerIsInTeamGridStore = (teamStore, player) => {
-    for (let i = 0; i < 14; i++) {
-        let storedPlayer = teamStore[i].player
-        if (storedPlayer === player) {
-            return true
-        }
-    }
-    return false
-}
-
-
+import { useDispatch } from 'react-redux'
+import { addOnePlayer } from '../../../redux/features/teamGridSlice'
 
 export default function Player(props) {
 
-    const player = props.player
     const dispatch = useDispatch()
-    // const teamStore = useSelector(getTeamStore)
+    const player = props.player
+    const playerPhotoId = player.photo.slice(0, -4); 
+    const picUrl = `https://resources.premierleague.com/premierleague/photos/players/110x140/p${playerPhotoId}.png`
 
-    // const isPlayerInStore = checkIfPlayerIsInTeamGridStore(teamStore, player)
-
-    const handleClick = () => {
-        // if (!isPlayerInStore) {
-            dispatch(addOnePlayer(player))
-        // }
-    }
+    const handleClick = () => { dispatch(addOnePlayer(player)) }
 
     return (
         <ListItemButton key={props.index}
@@ -41,7 +24,7 @@ export default function Player(props) {
             onClick={handleClick}>
             <ListItem sx={{ maxWidth: 287, maxHeight: 40}}>
                 <ListItemAvatar>
-                    <Avatar />
+                    <Avatar style={{height: 50}} src={picUrl} alt={player.web_name} />
                 </ListItemAvatar>
                 <ListItemText
                     primary={

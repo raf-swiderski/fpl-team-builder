@@ -1,11 +1,10 @@
 import * as React from 'react';
-import styles from '../styles/Home.module.css'
 import { useGetPlayers } from '../components/useRequest';
 import TeamGrid from '../components/MainBox/TeamGrid';
 import NavBar from '../components/NavBar/NavBar';
 import PlayerSelecter from '../components/PlayerSelecter/PlayerSelecter';
 import { ThemeProvider } from '@mui/material/styles';
-import { Box, Grid } from '@mui/material';
+import { Grid } from '@mui/material';
 import theme from '../Theme';
 
 import { store } from '../redux/store'
