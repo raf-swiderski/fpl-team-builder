@@ -49,7 +49,8 @@ export default function PlayerSelecter(props) {
       borderRadius: 2,
       p: 2,
       marginTop: 3,
-      minWidth: 290
+      minWidth: 360,
+      maxWidth: 360
     }}>
 
       <ChangeSortBy sortBy={getSortBy}/>

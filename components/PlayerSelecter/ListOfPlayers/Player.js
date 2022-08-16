@@ -34,7 +34,7 @@ export default function Player(props) {
                             variant="body2"
                             color="text.primary"
                         >
-                            {player.first_name} {player.web_name}
+                            {player.web_name}
                         </Typography>
                     </React.Fragment>
                     }

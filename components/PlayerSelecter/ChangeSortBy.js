@@ -41,6 +41,6 @@ export default function ChangeSortBy(props) {
       </Select>
     </FormControl>
   );
-  // selected by, form, can't be used because they are strings
+  // 'selected by', 'form', can't be used because they are strings
 }
 
