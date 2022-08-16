@@ -11,7 +11,6 @@ export default function TogglePosition(props) {
 
   };
 
-
   return (
     <ToggleButtonGroup
       value={toggle}

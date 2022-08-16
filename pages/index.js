@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { useGetPlayers } from '../components/useRequest';
-import TeamGrid from '../components/MainBox/TeamGrid';
-import NavBar from '../components/NavBar/NavBar';
-import PlayerSelecter from '../components/PlayerSelecter/PlayerSelecter';
+import TeamGrid from '../components/index/MainBox/TeamGrid/TeamGrid';
+import NavBar from '../components/index/NavBar/NavBar';
+import PlayerSelecter from '../components/index/PlayerSelecter/PlayerSelecter';
 import { ThemeProvider } from '@mui/material/styles';
 import { Grid } from '@mui/material';
 import theme from '../Theme';

@@ -7,7 +7,7 @@ import ListItemButton from '@mui/material/ListItemButton';
 import Avatar from '@mui/material/Avatar';
 import { Typography } from '@mui/material';
 import { useDispatch } from 'react-redux'
-import { addOnePlayer } from '../../../redux/features/teamGridSlice'
+import { addOnePlayer } from '../../../../redux/features/teamGridSlice'
 
 export default function Player(props) {
 

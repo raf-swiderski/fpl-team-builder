@@ -5,11 +5,11 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { ThemeProvider } from '@mui/material/styles';
 import { playerPhoto, playerName, playerPrice, markPlayerName, markPlayerPrice } from './playerCard.module.css'
-import theme from '../../Theme';
+import theme from '../../../../Theme';
 import EmptyPlayerCard from './EmptyPlayerCard'
 import { useSelector, useDispatch } from "react-redux";
-import { getTeamStore } from '../../redux/features/teamGridSlice'
-import { removeOnePlayer } from '../../redux/features/teamGridSlice'
+import { getTeamStore } from '../../../../redux/features/teamGridSlice'
+import { removeOnePlayer } from '../../../../redux/features/teamGridSlice'
 
 function PlayerCard(props) {
   const dispatch = useDispatch()
@@ -36,7 +36,7 @@ function PlayerCard(props) {
 
   return (
     <ThemeProvider theme={theme}>
-      <Card style={{ border: "none", boxShadow: "none" }} sx={{ width: 180, minHeight: 110, margin: 0 }}>
+      <Card style={{ border: "none", boxShadow: "none" }} sx={{ width: 180, height: 150, margin: 0 }}>
         <CardContent >
           <CardMedia className={playerPhoto} component="img" alt='playerPhoto' src={picUrl} />
           <IconButton 

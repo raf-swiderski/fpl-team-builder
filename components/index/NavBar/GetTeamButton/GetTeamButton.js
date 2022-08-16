@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button } from '@mui/material';
-import theme from '../../../Theme';
+import theme from '../../../../Theme';
 import { ThemeProvider } from '@mui/material/styles';
 
 export default function GetTeamButton(props) {

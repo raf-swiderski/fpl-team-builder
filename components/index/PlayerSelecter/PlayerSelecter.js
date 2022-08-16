@@ -27,8 +27,8 @@ export default function PlayerSelecter(props) {
 
   if (props.allPlayers == null) return null
 
-  const [allPlayers] = React.useState(sortPlayers(props.allPlayers, 'points'));
-  const [sortBy, setSortBy] = React.useState(null);
+  const [allPlayers] = React.useState(sortPlayers(props.allPlayers, 'total_points'));
+  const [sortBy, setSortBy] = React.useState('total_points');
   const [position, setPosition] = React.useState(null);
   const [newPlayers, setNewPlayers] = React.useState(null);
 
@@ -52,11 +52,9 @@ export default function PlayerSelecter(props) {
       minWidth: 360,
       maxWidth: 360
     }}>
-
       <ChangeSortBy sortBy={getSortBy}/>
       <br></br>
       <TogglePosition position={getPosition}/>
-
       <ListOfPlayers allPlayers={newPlayers ? newPlayers : allPlayers}/>
     </Box>  
   );

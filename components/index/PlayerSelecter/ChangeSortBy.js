@@ -13,13 +13,12 @@ export default function ChangeSortBy(props) {
   };
 
   return (
-    <FormControl sx={{ minWidth: 287, backgroundColor: "secondary.main" }}>
+    <FormControl sx={{ minWidth: 328, backgroundColor: "secondary.main" }}>
       <InputLabel >Sort By</InputLabel>
       <Select
         value={sortBy}
         label="sort-by"
-        onChange={handleChange}
-      >
+        onChange={handleChange}>
         <MenuItem value={"total_points"}>Points</MenuItem>
         <MenuItem value={"now_cost"}>Price</MenuItem>
         <MenuItem value={"points_per_game"}>Points per Game</MenuItem>

@@ -1,35 +1,9 @@
 import * as React from 'react';
 import { List, Paper, Pagination } from '@mui/material';
 import Player from './Player';
-
-function usePagination(data, itemsPerPage) {
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const maxPage = Math.ceil(data.length / itemsPerPage);
-
-  function currentData() {
-    const begin = (currentPage - 1) * itemsPerPage;
-    const end = begin + itemsPerPage;
-    return data.slice(begin, end);
-  }
-
-  function next() {
-    setCurrentPage(currentPage => Math.min(currentPage + 1, maxPage));
-  }
-
-  function prev() {
-    setCurrentPage(currentPage => Math.max(currentPage - 1, 1));
-  }
-
-  function jump(page) {
-    const pageNumber = Math.max(1, page);
-    setCurrentPage(currentPage => Math.min(pageNumber, maxPage));
-  }
-
-  return { next, prev, jump, currentData, currentPage, maxPage };
-}
+import usePagination from './Pagination'
 
 export default function ListOfPlayers(props) {
-
 
   const [page, setPage] = React.useState(1)
   const PER_PAGE = 15;
@@ -61,7 +35,7 @@ export default function ListOfPlayers(props) {
         shape="rounded"
         onChange={handleChange} 
         siblingCount={0}
-        style={{ maxWidth: 300 }}
+        style={{ maxWidth: 300, marginTop: 13, marginLeft: 29, marginRight: 25 }}
         />
     </React.Fragment>
   );
