@@ -1,8 +1,9 @@
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import * as React from 'react';
 import ListOfPlayers from './ListOfPlayers/ListOfPlayers'
 import ChangeSortBy from './ChangeSortBy';
 import TogglePosition from './TogglePosition';
+import ClubSelecter from './ClubSelecter';
 
 function sortPlayers(allPlayers, sortBy) {  
   return allPlayers.sort((a, b) => (a[sortBy] < b[sortBy]) ? 1 : -1)
@@ -42,6 +43,10 @@ export default function PlayerSelecter(props) {
     setNewPlayers(manipulateList(allPlayers, sortBy, position))
   };
 
+  const getClub = (club) => {
+    console.log(club)
+  }
+
   return (
     <Box sx={{
       bgcolor: 'background',
@@ -54,8 +59,12 @@ export default function PlayerSelecter(props) {
     }}>
       <ChangeSortBy sortBy={getSortBy}/>
       <br></br>
-      <TogglePosition position={getPosition}/>
+      <Grid container justifyContent='center' direction='row' alignItems='center'>
+        <TogglePosition position={getPosition}/>
+        <ClubSelecter club={getClub} />
+      </Grid>
       <ListOfPlayers allPlayers={newPlayers ? newPlayers : allPlayers}/>
     </Box>  
   );
 };
+
