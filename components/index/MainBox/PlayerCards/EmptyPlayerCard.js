@@ -4,6 +4,7 @@ import { Card, CardContent, Typography } from '@mui/material'
 import { ThemeProvider } from '@mui/material/styles';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import IconButton from '@mui/material/IconButton';
+import {selectPlayer} from './emptyPlayerCard.module.css'
 
 import { useDispatch, useSelector } from "react-redux";
 import { revertCardToPrevPlayer } from '../../../../redux/features/teamGridSlice'
@@ -14,9 +15,8 @@ export default function EmptyPlayerCard(props) {
   
   return (
     <ThemeProvider theme={theme}> 
-      <Card variant="outlined"       
+      <Card style={{ border: "none", boxShadow: "none" }}
       sx={{
-        bgcolor: 'secondary.main',
         width: 180, 
         height: 150,
         margin: 0
@@ -28,13 +28,13 @@ export default function EmptyPlayerCard(props) {
                       sx={{
                       position: 'absolute',
                       alignSelf: 'flex-end',
-                      marginTop: -2.49,
-                      marginLeft: 16.4 
+                      marginTop: 1.49,
+                      marginLeft: 8.4 
                   }}>
                 <RefreshIcon/>
             </IconButton> 
           }
-          <Typography color="text.secondary" >
+          <Typography className={selectPlayer} >
 
               <mark>Select Player</mark>
 
