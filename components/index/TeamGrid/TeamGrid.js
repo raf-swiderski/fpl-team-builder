@@ -1,15 +1,17 @@
 import * as React from 'react';
 import { Grid, Box } from '@mui/material'
-import PlayerCard from '../PlayerCards/PlayerCard';
+import PlayerCard from './PlayerCards/PlayerCard';
 import Image from 'next/image'
 import { teamGrid } from './teamGrid.module.css'
+import TopBar from './TopBar/TopBar';
 
 export default function TeamGrid() {
   return (
     <React.Fragment>
     
-      <Box sx={{ bgcolor: '#228B22', boxShadow: 1, borderRadius: 2, minWidth: 300, maxWidth: 1000,  marginTop: 3, marginLeft: 2, marginRight: 2,width: 'auto' }}>
-        <div style={{width: '100%', height: '95%', position: 'relative'}}>
+      <Box sx={{ bgcolor: '#228B22', boxShadow: 1, borderRadius: 2, minWidth: 300, maxWidth: 1000,  marginTop: 3, marginLeft: 2, marginRight: 2 ,width: 'auto' }}>
+          <TopBar/>
+        <div style={{width: '100%', height: '90%', position: 'relative'}}>
           <Image alt="pitch" src="/pitch.png" layout="fill" objectFit="contain" priority quality={100}/>
 
           <Grid className={teamGrid} container spacing={3} justifyContent='center' direction='row' alignItems='center' marginTop={3} >
