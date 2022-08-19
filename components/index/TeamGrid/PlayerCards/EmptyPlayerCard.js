@@ -31,7 +31,8 @@ export default function EmptyPlayerCard(props) {
                       marginTop: 1.49,
                       marginLeft: 8.4 
                   }}>
-                <RefreshIcon/>
+                <RefreshIcon fontSize='small' sx={{bgcolor: 'background',  borderRadius: 1 }}
+                />
             </IconButton> 
           }
           <Typography className={selectPlayer} >

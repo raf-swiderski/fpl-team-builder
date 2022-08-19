@@ -48,8 +48,9 @@ function PlayerCard(props) {
                     sx={{ position: 'absolute',
                     alignSelf: 'flex-end',
                     marginTop: -12.7,
-                    marginLeft: 14.4 }}>
-            <CloseIcon />
+                    marginLeft: 14.4
+                    }}>
+            <CloseIcon fontSize='small' sx={{bgcolor: 'background',  borderRadius: 1 }}/>
           </IconButton> 
           <Typography align="center" className={playerName}> 
             <mark className={markPlayerName}> {playerInfo.web_name}</mark>
