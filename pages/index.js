@@ -11,7 +11,6 @@ import { store } from '../redux/store'
 import { Provider } from 'react-redux'
 import Head from 'next/head';
 
-const team = null
 
 export default function Home() {
 
@@ -20,8 +19,8 @@ export default function Home() {
   return (
     <Provider store={store}>
       <Head>
-        <link rel="shortcut icon" href="/static/favicon.ico" />
         <title>FPL Team Builder</title>
+        <link rel="favicon" href="/static/favicon.ico" />
       </Head>
       <ThemeProvider theme={theme}>
         <NavBar/>

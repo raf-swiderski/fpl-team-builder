@@ -40,7 +40,11 @@ function PlayerCard(props) {
         <CardContent >
           <CardMedia className={playerPhoto} component="img" alt='playerPhoto' src={picUrl} />
           <IconButton 
-                    onClick={() => dispatch(removeOnePlayer(props.index))}
+                    onClick={() => dispatch(removeOnePlayer({
+                        index: props.index,
+                        player: playerInfo
+                      }
+                    ))}
                     sx={{ position: 'absolute',
                     alignSelf: 'flex-end',
                     marginTop: -12.7,
