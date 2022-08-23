@@ -3,6 +3,8 @@ import useSWR from 'swr';
 
 const allPlayersUrl = 'https://fpl-api-raf.herokuapp.com/allplayers'
 
+const premTeamsUrl = 'https://fpl-api-raf.herokuapp.com/premteams'
+
 // const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const fetcher = async url => {
@@ -24,5 +26,12 @@ const fetcher = async url => {
 
 export const useGetPlayers = () => {
   const { data, error } = useSWR(allPlayersUrl, fetcher);
+
+
+  return { data, error };
+};
+
+export const useGetTeams = () => {
+  const { data, error } = useSWR(premTeamsUrl, fetcher);
   return { data, error };
 };

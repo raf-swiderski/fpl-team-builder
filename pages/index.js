@@ -16,6 +16,8 @@ export default function Home() {
 
   const { data: allPlayers, error } = useGetPlayers(); // fetching all players from api 
 
+  console.log(allPlayers)
+
   return (
     <Provider store={store}>
       <Head>
