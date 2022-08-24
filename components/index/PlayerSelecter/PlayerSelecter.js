@@ -12,7 +12,9 @@ function sortPlayers(allPlayers, sortBy) {
 function filterPlayerByPosition(allPlayers, position) {
   var newPlayers = []
   for (let i = 0; i < allPlayers.length; i++) {
-    if (allPlayers[i].element_type === parseInt(position)) { newPlayers.push(allPlayers[i]) }
+    if (allPlayers[i].element_type === parseInt(position)) { 
+      newPlayers.push(allPlayers[i]) 
+    }
   }
   if (newPlayers.length === 0) { return allPlayers }
   return newPlayers
@@ -34,6 +36,7 @@ export default function PlayerSelecter(props) {
   const [newPlayers, setNewPlayers] = React.useState(null);
 
   const getSortBy = (sortBy) => {
+    console.log(sortBy)
     setSortBy(sortBy)
     setNewPlayers(manipulateList(allPlayers, sortBy, position))
   }
