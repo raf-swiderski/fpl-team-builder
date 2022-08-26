@@ -10,6 +10,7 @@ function sortPlayers(allPlayers, sortBy) {
 }
 
 function filterPlayerByPosition(allPlayers, position) {
+
   var newPlayers = []
   for (let i = 0; i < allPlayers.length; i++) {
     if (allPlayers[i].element_type === parseInt(position)) { 
@@ -23,6 +24,7 @@ function filterPlayerByPosition(allPlayers, position) {
 function manipulateList(allPlayers, sortBy, position) {
   allPlayers = filterPlayerByPosition(allPlayers, position);
   allPlayers = sortPlayers(allPlayers, sortBy);
+
   return allPlayers;
 };
 
@@ -30,25 +32,26 @@ export default function PlayerSelecter(props) {
 
   if (props.allPlayers == null) return null
 
-  const [allPlayers] = React.useState(sortPlayers(props.allPlayers, 'total_points'));
+  const [allPlayers] = React.useState(props.allPlayers);
   const [sortBy, setSortBy] = React.useState('total_points');
   const [position, setPosition] = React.useState(null);
   const [newPlayers, setNewPlayers] = React.useState(null);
 
   const getSortBy = (sortBy) => {
-    console.log(sortBy)
-    setSortBy(sortBy)
     setNewPlayers(manipulateList(allPlayers, sortBy, position))
+    setSortBy(sortBy)
   }
 
   const getPosition = (position) => {
-    setPosition(position)
     setNewPlayers(manipulateList(allPlayers, sortBy, position))
+    setPosition(position)
   };
 
   const getClub = (club) => {
     console.log(club)
   }
+
+  console.log(newPlayers)
 
   return (
     <Box sx={{
