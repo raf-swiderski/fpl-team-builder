@@ -17,10 +17,12 @@ function PlayerCard(props) {
   const [player, setPlayer] = useState(null)
   const isMounted = useRef(false);
   const [hasBeenPreviouslyFilled, setHasBeenPreviouslyFilled] = useState(false)
+  const [pricingProperty, setPricingProperty] = useState('now_cost')
 
   useEffect(() => {
     if (isMounted.current) { setPlayer(teamStore[props.index])}
     if (teamStore[props.index].prevFilled) { setHasBeenPreviouslyFilled(true)}
+    teamStore.teamValue.showTrueValue ? setPricingProperty('true_value') : setPricingProperty('now_cost')
   }, [teamStore])
 
   useEffect(() => {
@@ -56,12 +58,21 @@ function PlayerCard(props) {
             <mark className={markPlayerName}> {playerInfo.web_name}</mark>
           </Typography>
           <Typography align="center" className={playerPrice}>
-            <mark className={markPlayerPrice}>£{playerInfo.now_cost}m</mark> 
+            <mark className={markPlayerPrice}>£{insertDecimalPoint(playerInfo[pricingProperty])}m</mark> 
           </Typography>
         </CardContent>
       </Card>
     </ThemeProvider>    
   )
+}
+
+function insertDecimalPoint(num) {
+  const numString = String(num);
+  const firstPart = numString.slice(0, -1);
+  const lastPart = numString.slice(-1);
+
+  if (numString.length < 2) { return `0.${lastPart}`; }
+  return `${firstPart}.${lastPart}`;
 }
 
 

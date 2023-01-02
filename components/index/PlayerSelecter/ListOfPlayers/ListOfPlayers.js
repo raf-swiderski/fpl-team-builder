@@ -5,6 +5,10 @@ import usePagination from './Pagination'
 
 export default function ListOfPlayers(props) {
 
+  React.useEffect(() => {
+    console.log(props.allPlayers)
+  }, [])
+
   const [page, setPage] = React.useState(1)
   const PER_PAGE = 15;
 

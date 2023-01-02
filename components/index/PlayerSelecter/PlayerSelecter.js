@@ -47,11 +47,12 @@ export default function PlayerSelecter(props) {
     setPosition(position)
   };
 
+  // club printing out, manipulate list, set new club, edit manipulate list. 
+
   const getClub = (club) => {
+    // setNewPlayers(manipulateList(allPlayers, sortBy, position, club))
     console.log(club)
   }
-
-  console.log(newPlayers)
 
   return (
     <Box sx={{

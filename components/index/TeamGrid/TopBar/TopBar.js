@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Stack, Box } from '@mui/material'
 import TeamValue from './TeamValue/TeamValue'
+import TrueValueToggle from './TrueValueToggle/TrueValueToggle';
 
 
 export default function TopBar() {
@@ -17,6 +18,7 @@ export default function TopBar() {
       }}>
         <Stack direction="row" spacing={1}>
           <TeamValue/>
+          <TrueValueToggle/>
         </Stack>
       </Box>  
     </React.Fragment>

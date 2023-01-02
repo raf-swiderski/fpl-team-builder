@@ -110,106 +110,37 @@ export const teamGridReducer = createSlice({
         prevFilled: false
     },
     teamValue: {
+        showTrueValue: false,
+        initialBudget: 1000,
+        budget: 1000,
         value: 0,
         exceeded: false
     }
   },
   reducers: {
     addOnePlayer: (state, action) => {
-
-      const playerToBeAdded = action.payload
-      const value = parseFloat(playerToBeAdded.now_cost)
-
-      switch (playerToBeAdded.element_type) {
-
-        case 1: // GKP 
-            if (!state[0].filled) {
-                state.teamValue.value += value
-                state[0].player = playerToBeAdded
-                state[0].filled = true
-                state[0].prevFilled = true
-            } else if (!state[1].filled) {
-                state.teamValue.value += value
-                state[1].player = playerToBeAdded
-                state[1].filled = true
-                state[1].prevFilled = true
-            }
-            break;
-        case 2: // DEF
-            if (!state[2].filled) {
-                state.teamValue.value += value
-                state[2].player = playerToBeAdded
-                state[2].filled = true
-                state[2].prevFilled = true
-            } else if ((!state[3].filled)) {
-                state.teamValue.value += value
-                state[3].player = playerToBeAdded
-                state[3].filled = true
-                state[3].prevFilled = true
-            } else if ((!state[4].filled)) {
-                state.teamValue.value += value
-                state[4].player = playerToBeAdded
-                state[4].filled = true
-                state[4].prevFilled = true
-            } else if ((!state[5].filled)) {
-                state.teamValue.value += value
-                state[5].player = playerToBeAdded
-                state[5].filled = true
-                state[5].prevFilled = true
-            } else if (!state[6].filled) {
-                state.teamValue.value += value
-                state[6].player = playerToBeAdded
-                state[6].filled = true
-                state[6].prevFilled = true
-            }
-            break;
-        case 3: // MID
-            if (!state[7].filled) {
-                state.teamValue.value += value
-                state[7].player = playerToBeAdded
-                state[7].filled = true
-                state[7].prevFilled = true
-            } else if ((!state[8].filled)) {
-                state.teamValue.value += value
-                state[8].player = playerToBeAdded
-                state[8].filled = true
-                state[8].prevFilled = true
-            } else if ((!state[9].filled)) {
-                state.teamValue.value += value
-                state[9].player = playerToBeAdded
-                state[9].filled = true
-                state[9].prevFilled = true
-            } else if ((!state[10].filled)) {
-                state.teamValue.value += value
-                state[10].player = playerToBeAdded
-                state[10].filled = true
-                state[10].prevFilled = true
-            } else if ((!state[11].filled)) {
-                state.teamValue.value += value
-                state[11].player = playerToBeAdded
-                state[11].filled = true
-                state[11].prevFilled = true
-            }
-            break;
-        case 4: // FWD
-            if (!state[12].filled) {
-                state.teamValue.value += value
-                state[12].player = playerToBeAdded
-                state[12].filled = true
-                state[12].prevFilled = true
-            } else if ((!state[13].filled)) {
-                state.teamValue.value += value
-                state[13].player = playerToBeAdded
-                state[13].filled = true
-                state[13].prevFilled = true
-            } else if ((!state[14].filled)) {
-                state.teamValue.value += value
-                state[14].player = playerToBeAdded
-                state[14].filled = true
-                state[14].prevFilled = true
-            } 
+      const POSITION_GROUPS = [
+          { type: 1, start: 0, end: 1 }, // GKP
+          { type: 2, start: 2, end: 6 }, // DEF
+          { type: 3, start: 7, end: 11 }, // MID
+          { type: 4, start: 12, end: 14 } // FWD
+      ]
+      const playerToBeAdded = action.payload        
+    
+      for (const group of POSITION_GROUPS) {
+        if (group.type !== playerToBeAdded.element_type) continue
+    
+        for (let i = group.start; i <= group.end; i++) {
+          if (!state[i].filled) {
+            state[i].player = playerToBeAdded
+            state[i].filled = true
+            state[i].prevFilled = true
+            break
+          }
         }
-      
+      }
+      let property = state.teamValue.showTrueValue ? 'true_value' : 'now_cost';
+      state.teamValue.value = calculateTeamValue(state, property);
     },
     removeOnePlayer: (state, action) => {
 
@@ -220,17 +151,37 @@ export const teamGridReducer = createSlice({
       state[index].prevPlayer = state[index].player
       state[index].player = {}
       state.teamValue.value -= value
-
     },
     revertCardToPrevPlayer: (state, action) => {
       let index = action.payload
       state[index].player = state[index].prevPlayer
       state[index].filled = true
       state.teamValue.value += state[index].prevPlayer.now_cost
+    },
+    toggleTrueValue: (state, action) => {
+      const boolean = action.payload
+      state.teamValue.showTrueValue = boolean
+ 
+      state.teamValue.showTrueValue ? state.teamValue.budget = 607 : state.teamValue.budget = state.teamValue.initialBudget;
+
+      let property = state.teamValue.showTrueValue ? 'true_value' : 'now_cost';
+      state.teamValue.value = calculateTeamValue(state, property);
+      return state;
     }
   },
 })
 
-export const { addOnePlayer, removeOnePlayer, revertCardToPrevPlayer } = teamGridReducer.actions;
+function calculateTeamValue (state, property) {
+    let totalValue = 0;
+    for (let i = 0; i < 15; i++) {
+      const pos = state[i];
+      if (pos.filled) {
+        totalValue += pos.player[property];
+      }
+    }
+    return totalValue;;
+};
+
+export const { addOnePlayer, removeOnePlayer, revertCardToPrevPlayer, toggleTrueValue } = teamGridReducer.actions;
 export const getTeamStore = (initialState) => initialState.teamGrid
 export default teamGridReducer.reducer;

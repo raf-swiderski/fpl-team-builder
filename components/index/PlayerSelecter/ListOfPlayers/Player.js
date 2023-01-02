@@ -46,7 +46,7 @@ export default function Player(props) {
                             variant="body2"
                             color="text.primary"
                         >
-                            £{player.now_cost}m Points: {player.total_points}
+                            £{insertDecimalPoint(player.now_cost)}m Points: {player.total_points}
                         </Typography>
 
                         {` ${player.team_name}`}
@@ -58,3 +58,10 @@ export default function Player(props) {
     );
 }
 
+function insertDecimalPoint(num) {
+    const numString = String(num);
+    const firstPart = numString.slice(0, -1);
+    const lastPart = numString.slice(-1);
+
+    return `${firstPart}.${lastPart}`;
+}
